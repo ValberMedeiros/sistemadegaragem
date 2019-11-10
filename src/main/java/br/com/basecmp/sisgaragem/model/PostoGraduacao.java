@@ -26,6 +26,7 @@ public class PostoGraduacao implements Serializable {
     @OneToMany(mappedBy = "postoGraduacao")
     private List<Usuarios> usuarios;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "postoGraduacaoMotorista")
     private List<Motorista> motoristas;
 

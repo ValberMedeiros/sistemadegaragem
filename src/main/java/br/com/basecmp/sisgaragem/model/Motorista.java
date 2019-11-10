@@ -1,6 +1,7 @@
 package br.com.basecmp.sisgaragem.model;
 
 import br.com.basecmp.sisgaragem.model.enums.StatusMotorista;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -32,7 +33,8 @@ public class Motorista implements Serializable {
 	private String nomeDeGuerra;
 	
 	private StatusMotorista statusMotorista;
-	
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "motoristaDoPedido")
     private List<Pedido> pedidos;
 	

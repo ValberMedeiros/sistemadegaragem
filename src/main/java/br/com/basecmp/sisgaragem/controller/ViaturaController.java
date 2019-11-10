@@ -74,7 +74,7 @@ public class ViaturaController {
      * @return Viatura ja atualizada na base de dados
      */
     @PutMapping("/{id}")
-    public ResponseEntity<?> editar(@PathVariable Long id, Viatura viatura) {
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Viatura viatura) {
 
         /**
          * Se for encontrada a viatura com o id passado retornará a viatura com os dados atualizados, se não, retornará

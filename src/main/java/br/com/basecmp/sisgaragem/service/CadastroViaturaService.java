@@ -33,7 +33,7 @@ public class CadastroViaturaService {
                     String.format("Não foi possível encontrar uma viatura com o código %d.", id)
             );
         } else {
-            BeanUtils.copyProperties(viatura, viaturaAtual, "id");
+            BeanUtils.copyProperties(viatura, viaturaAtual.get(), "id");
             Viatura viaturaAtualizada = viaturaRepository.save(viaturaAtual.get());
             return viaturaAtualizada;
         }
