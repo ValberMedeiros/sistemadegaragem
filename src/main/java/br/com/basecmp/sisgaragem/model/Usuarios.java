@@ -1,5 +1,6 @@
 package br.com.basecmp.sisgaragem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -43,7 +44,8 @@ public class Usuarios implements Serializable {
 
     @NotBlank(message = "Informe uma senha")
     private String password;
-    
+
+    @JsonIgnore
     @OneToMany(mappedBy = "usuarioRemetente")
     private List<Pedido> pedidos;
 
