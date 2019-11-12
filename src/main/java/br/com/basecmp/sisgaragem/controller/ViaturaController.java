@@ -1,5 +1,6 @@
 package br.com.basecmp.sisgaragem.controller;
 
+import br.com.basecmp.sisgaragem.exception.EntidadeVaziaException;
 import br.com.basecmp.sisgaragem.service.CadastroViaturaService;
 import br.com.basecmp.sisgaragem.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.exception.EntidadeNaoEncontradaException;
@@ -31,7 +32,7 @@ public class ViaturaController {
         try {
             List<Viatura> viaturas = cadastroViatura.listar();
             return ResponseEntity.status(HttpStatus.OK).body(viaturas);
-        } catch (EntidadeNaoEncontradaException e){
+        } catch (EntidadeVaziaException e){
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
         }
     }

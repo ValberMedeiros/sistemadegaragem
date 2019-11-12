@@ -2,6 +2,7 @@ package br.com.basecmp.sisgaragem.controller;
 
 import br.com.basecmp.sisgaragem.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.exception.EntidadeNaoEncontradaException;
+import br.com.basecmp.sisgaragem.exception.EntidadeVaziaException;
 import br.com.basecmp.sisgaragem.model.Usuarios;
 import br.com.basecmp.sisgaragem.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class UsuarioController {
         try {
             List<Usuarios> usuarios = cadastroUsuario.listar();
             return ResponseEntity.status(HttpStatus.OK).body(usuarios);
-        } catch (EntidadeNaoEncontradaException e) {
+        } catch (EntidadeVaziaException e) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
         }
     }

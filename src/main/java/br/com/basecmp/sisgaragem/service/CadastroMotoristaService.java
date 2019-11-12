@@ -2,6 +2,7 @@ package br.com.basecmp.sisgaragem.service;
 
 import br.com.basecmp.sisgaragem.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.exception.EntidadeNaoEncontradaException;
+import br.com.basecmp.sisgaragem.exception.EntidadeVaziaException;
 import br.com.basecmp.sisgaragem.model.Motorista;
 import br.com.basecmp.sisgaragem.repository.MotoristaRepository;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +25,7 @@ public class CadastroMotoristaService {
         List<Motorista> motoristas = motoristaRepository.findAll();
 
         if (motoristas.isEmpty()) {
-            throw new EntidadeNaoEncontradaException(
+            throw new EntidadeVaziaException(
                     String.format("Não há nenhum motorista cadastrado.")
             );
         } else {

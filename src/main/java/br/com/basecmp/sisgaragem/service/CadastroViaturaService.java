@@ -2,6 +2,7 @@ package br.com.basecmp.sisgaragem.service;
 
 import br.com.basecmp.sisgaragem.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.exception.EntidadeNaoEncontradaException;
+import br.com.basecmp.sisgaragem.exception.EntidadeVaziaException;
 import br.com.basecmp.sisgaragem.model.Viatura;
 import br.com.basecmp.sisgaragem.repository.ViaturaRepository;
 import org.springframework.beans.BeanUtils;
@@ -43,7 +44,7 @@ public class CadastroViaturaService {
         List<Viatura> viaturas = viaturaRepository.findAll();
 
         if(viaturas.isEmpty()) {
-            throw new EntidadeNaoEncontradaException(
+            throw new EntidadeVaziaException(
                     String.format("Não há nenhuma viatura cadastrada.")
             );
         } else {
