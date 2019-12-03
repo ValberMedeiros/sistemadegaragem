@@ -4,6 +4,7 @@ import br.com.basecmp.sisgaragem.domain.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeNaoEncontradaException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeVaziaException;
 import br.com.basecmp.sisgaragem.domain.model.Motorista;
+import br.com.basecmp.sisgaragem.domain.model.PostoGraduacao;
 import br.com.basecmp.sisgaragem.domain.service.CadastroMotoristaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -107,5 +108,16 @@ public class MotoristaController {
         } catch (EntidadeEmUsoException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
+    }
+
+    /**
+     * Metodo responsável por fornecer uma lista dos postosGrads cadastrados na base de dados
+     * @return List<PostoGrad>
+     */
+    @GetMapping("/postograd")
+    public ResponseEntity<List<PostoGraduacao>> getPostoGraduacao() {
+        List<PostoGraduacao> postoGraduacao = cadastroMotorista.getPostoGraduacao();
+
+        return ResponseEntity.status(HttpStatus.OK).body(postoGraduacao);
     }
 }

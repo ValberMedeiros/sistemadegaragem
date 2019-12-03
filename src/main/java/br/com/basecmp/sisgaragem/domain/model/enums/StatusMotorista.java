@@ -8,7 +8,7 @@ public enum StatusMotorista {
 	DISPENSADO("Dispensado"),
 	ATESTADO("Atestado");
 	
-	private String descricao;
+	public String descricao;
 
 	StatusMotorista(String descricao) {
 		this.descricao = descricao;

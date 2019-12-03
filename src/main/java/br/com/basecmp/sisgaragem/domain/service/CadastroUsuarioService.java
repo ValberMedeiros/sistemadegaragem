@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class CadastroUsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public List<Usuarios> listar() {
-        List<Usuarios> usuarios = usuarioRepository.findAll();
+        List<Usuarios> usuarios = usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "PostoGraduacao"));
 
         if (usuarios.isEmpty()) {
             throw new EntidadeVaziaException(

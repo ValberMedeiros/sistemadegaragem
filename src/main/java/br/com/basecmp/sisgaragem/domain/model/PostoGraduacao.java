@@ -14,6 +14,9 @@ public class PostoGraduacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public PostoGraduacao() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long postoGraduacao_id;

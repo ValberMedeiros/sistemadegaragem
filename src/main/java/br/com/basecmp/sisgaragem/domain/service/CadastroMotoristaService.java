@@ -4,11 +4,14 @@ import br.com.basecmp.sisgaragem.domain.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeNaoEncontradaException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeVaziaException;
 import br.com.basecmp.sisgaragem.domain.model.Motorista;
+import br.com.basecmp.sisgaragem.domain.model.PostoGraduacao;
 import br.com.basecmp.sisgaragem.domain.repository.MotoristaRepository;
+import br.com.basecmp.sisgaragem.domain.repository.PostoGraduacaoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +23,12 @@ public class CadastroMotoristaService {
     @Autowired
     private MotoristaRepository motoristaRepository;
 
+    @Autowired
+    private PostoGraduacaoRepository postoGraduacaoRepository;
+
     public List<Motorista> listar() {
 
-        List<Motorista> motoristas = motoristaRepository.findAll();
+        List<Motorista> motoristas = motoristaRepository.findAll(Sort.by(Sort.Direction.ASC, "postoGraduacaoMotorista"));
 
         if (motoristas.isEmpty()) {
             throw new EntidadeVaziaException(
@@ -82,4 +88,7 @@ public class CadastroMotoristaService {
         }
     }
 
+    public List<PostoGraduacao> getPostoGraduacao() {
+        return (List<PostoGraduacao>) postoGraduacaoRepository.findAll();
+    }
 }
