@@ -3,6 +3,7 @@ package br.com.basecmp.sisgaragem.api.controller;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeNaoEncontradaException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeVaziaException;
+import br.com.basecmp.sisgaragem.domain.model.Role;
 import br.com.basecmp.sisgaragem.domain.model.Usuarios;
 import br.com.basecmp.sisgaragem.domain.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,24 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (EntidadeEmUsoException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
+    }
+
+    /**
+     * Método responsável por fornecer uma lista de roles da base de dadps
+     * @return List de roles da base de dados
+     */
+    @GetMapping("/roles")
+    public ResponseEntity<?> getRoles() {
+        /**
+         * Se houver roles cadastradas na base de dados será retornada uma lista com as roles, se não, será retornado
+         * NO CONTENT
+         */
+        try {
+            List<Role> roles = this.cadastroUsuario.getRoles();
+            return ResponseEntity.status(HttpStatus.OK).body(roles);
+        } catch (EntidadeVaziaException e) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
         }
     }
 

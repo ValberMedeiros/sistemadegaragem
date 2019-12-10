@@ -9,8 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.basecmp.sisgaragem</groupId>
-    <artifactId>sisgaragem</artifactId>
+    <artifactId>sistemadegaragem</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>Sistema de Garagem</name>
     <description>Sistema de controle de garagem para a Base de Administração e Apoio do Comando Militar do Planalto
     </description>
@@ -32,7 +33,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -63,6 +63,7 @@
     </dependencies>
 
     <build>
+        <finalName>sistemadegaragem</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

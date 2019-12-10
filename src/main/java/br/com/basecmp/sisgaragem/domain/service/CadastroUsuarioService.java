@@ -3,7 +3,9 @@ package br.com.basecmp.sisgaragem.domain.service;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeNaoEncontradaException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeVaziaException;
+import br.com.basecmp.sisgaragem.domain.model.Role;
 import br.com.basecmp.sisgaragem.domain.model.Usuarios;
+import br.com.basecmp.sisgaragem.domain.repository.RolesRepository;
 import br.com.basecmp.sisgaragem.domain.repository.UsuarioRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class CadastroUsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private RolesRepository rolesRepository;
 
     public List<Usuarios> listar() {
         List<Usuarios> usuarios = usuarioRepository.findAll(Sort.by(Sort.Direction.ASC, "PostoGraduacao"));
@@ -83,6 +88,18 @@ public class CadastroUsuarioService {
             throw new EntidadeEmUsoException(
                     String.format("Não foi possível remover o usuario com o código %d, pois ele esta em uso.", id)
             );
+        }
+    }
+
+    public List<Role> getRoles() {
+        List<Role> roles = this.rolesRepository.findAll();
+
+        if (roles.isEmpty()) {
+            throw new EntidadeVaziaException(
+                    String.format("Não existe nenhuma role cadastrada")
+            );
+        } else {
+            return roles;
         }
     }
 
