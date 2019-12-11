@@ -89,6 +89,6 @@ public class CadastroMotoristaService {
     }
 
     public List<PostoGraduacao> getPostoGraduacao() {
-        return (List<PostoGraduacao>) postoGraduacaoRepository.findAll();
+        return postoGraduacaoRepository.findAll();
     }
 }

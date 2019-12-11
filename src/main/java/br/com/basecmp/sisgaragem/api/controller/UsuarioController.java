@@ -3,6 +3,7 @@ package br.com.basecmp.sisgaragem.api.controller;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeNaoEncontradaException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeVaziaException;
+import br.com.basecmp.sisgaragem.domain.model.PostoGraduacao;
 import br.com.basecmp.sisgaragem.domain.model.Role;
 import br.com.basecmp.sisgaragem.domain.model.Usuarios;
 import br.com.basecmp.sisgaragem.domain.service.CadastroUsuarioService;
@@ -126,17 +127,24 @@ public class UsuarioController {
      * @return List de roles da base de dados
      */
     @GetMapping("/roles")
-    public ResponseEntity<?> getRoles() {
+    public ResponseEntity<List<Role>> getRoles() {
         /**
          * Se houver roles cadastradas na base de dados será retornada uma lista com as roles, se não, será retornado
          * NO CONTENT
          */
-        try {
-            List<Role> roles = this.cadastroUsuario.getRoles();
-            return ResponseEntity.status(HttpStatus.OK).body(roles);
-        } catch (EntidadeVaziaException e) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(e.getMessage());
-        }
+        List<Role> roles = this.cadastroUsuario.getRoles();
+        return ResponseEntity.status(HttpStatus.OK).body(roles);
+    }
+
+    /**
+     * Metodo responsável por fornecer uma lista dos postosGrads cadastrados na base de dados
+     * @return List<PostoGrad>
+     */
+    @GetMapping("/postograd")
+    public ResponseEntity<List<PostoGraduacao>> getPostoGraduacao() {
+        List<PostoGraduacao> postoGraduacao = cadastroUsuario.getPostoGraduacao();
+
+        return ResponseEntity.status(HttpStatus.OK).body(postoGraduacao);
     }
 
 }

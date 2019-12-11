@@ -3,8 +3,10 @@ package br.com.basecmp.sisgaragem.domain.service;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeEmUsoException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeNaoEncontradaException;
 import br.com.basecmp.sisgaragem.domain.exception.EntidadeVaziaException;
+import br.com.basecmp.sisgaragem.domain.model.PostoGraduacao;
 import br.com.basecmp.sisgaragem.domain.model.Role;
 import br.com.basecmp.sisgaragem.domain.model.Usuarios;
+import br.com.basecmp.sisgaragem.domain.repository.PostoGraduacaoRepository;
 import br.com.basecmp.sisgaragem.domain.repository.RolesRepository;
 import br.com.basecmp.sisgaragem.domain.repository.UsuarioRepository;
 import org.springframework.beans.BeanUtils;
@@ -22,6 +24,9 @@ public class CadastroUsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PostoGraduacaoRepository postoGraduacaoRepository;
 
     @Autowired
     private RolesRepository rolesRepository;
@@ -101,6 +106,10 @@ public class CadastroUsuarioService {
         } else {
             return roles;
         }
+    }
+
+    public List<PostoGraduacao> getPostoGraduacao() {
+        return postoGraduacaoRepository.findAll();
     }
 
 }
